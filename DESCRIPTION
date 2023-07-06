@@ -20,3 +20,5 @@ Imports:
 Depends: 
     R (>= 2.10)
 LazyData: true
+URL: https://github.com/Noh-Hohsuk/gerstat
+BugReports: https://github.com/Noh-Hohsuk/gerstat/issues
