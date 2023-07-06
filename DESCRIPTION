@@ -1,0 +1,22 @@
+Package: gerstat
+Title: Offers a diverse range of statistical tests to compare germination rates
+Version: 0.0.0.9000
+Authors@R: 
+    person("Hohsuk", "Noh", , "hsnoh@sookmyung.ac.kr", role = c("aut", "cre"))
+Description: A toolbox to easily perform germination rate comparisons. Provides the P-value for a test for the presence of a difference in germination rate. It also provides a compact letter display based on the results of a multiple comparison test for germination rate differences.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    multcomp,
+    PMCMRplus,
+    rcompanion,
+    stats,
+    tibble,
+    tidyr,
+    utils
+Depends: 
+    R (>= 2.10)
+LazyData: true
