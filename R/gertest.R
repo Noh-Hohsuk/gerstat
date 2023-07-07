@@ -30,6 +30,12 @@
 #' (When the p-value is smaller than the specified significance level,
 #'  the cld becomes NULL)
 #' @examples
+#' \dontrun{
+#' # Data import from a csv file
+#' data<-read.csv('D:\\nandina_data.csv', header=TRUE)
+#' ger_test(gdata=data,method="ANOVA",method="single-step")
+#' }
+#'
 #' # Data generation
 #' data(nandina)
 #' ger_test(gdata=nandina,method="LRT")

@@ -42,6 +42,12 @@ letter display that groups treatments with similar germination rates,
 utilizing the specified multiple comparison method.
 }
 \examples{
+\dontrun{
+# Data import from a csv file
+data<-read.csv('D:\\\\nandina_data.csv', header=TRUE)
+ger_test(gdata=data,method="ANOVA",method="single-step")
+}
+
 # Data generation
 data(nandina)
 ger_test(gdata=nandina,method="LRT")
