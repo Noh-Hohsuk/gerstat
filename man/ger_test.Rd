@@ -7,9 +7,9 @@
 ger_test(gdata = gdata, method, p_adjust_mtd = "holm", ctr_lv = 0.05)
 }
 \arguments{
-\item{gdata}{A data-frame containing the germinationdata
-(The input data, 'gdata,' is expected to be a data frame containing three variables:
-'treatment,' 'num_seed,' and 'ger_seed'. The 'treatment' variable should be a factor
+\item{gdata}{A data-frame containing the germination data
+('gdata,' is expected to be a data frame containing three variables:
+'treatment,' 'num_seed,' and 'ger_seed'. The 'treatment' variable is a factor
 variable representing the treatment level, 'num_seed' should indicate
 the number of seeds used in each iteration of the treatment,
 and 'ger_seed' should indicate the number of seeds that germinated.)}

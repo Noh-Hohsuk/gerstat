@@ -8,6 +8,14 @@
 \description{
 A toolbox to easily perform germination rate comparisons. Provides the P-value for a test for the presence of a difference in germination rate. It also provides a compact letter display based on the results of a multiple comparison test for germination rate differences.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Noh-Hohsuk/gerstat}
+  \item Report bugs at \url{https://github.com/Noh-Hohsuk/gerstat/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Hohsuk Noh \email{hsnoh@sookmyung.ac.kr}
 
