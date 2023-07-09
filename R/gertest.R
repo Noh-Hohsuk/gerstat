@@ -32,15 +32,15 @@
 #' @examples
 #' \dontrun{
 #' # Data import from a csv file
-#' data<-read.csv('D:\\nandina_data.csv', header=TRUE)
-#' ger_test(gdata=data,method="ANOVA",method="single-step")
+#' gerdata<-read.csv('D:\\nandina_data.csv', header=TRUE)
+#' ger_test(gdata=gerdata,method="ANOVA",method="single-step")
 #' }
 #'
 #' # Data generation
 #' data(nandina)
 #' ger_test(gdata=nandina,method="LRT")
 #' @export
-ger_test<-function(gdata=gdata,method,p_adjust_mtd="holm",ctr_lv=0.05){
+ger_test<-function(gdata=data,method="LRT",p_adjust_mtd="holm",ctr_lv=0.05){
   if (!is.factor(gdata$treatment)){
     gdata$treatment<-as.factor(gdata$treatment)
   }
@@ -98,7 +98,7 @@ test_pANOVA<-function(gdata){
 }
 
 
-test_pANOVA_multiple<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
+test_pANOVA_multiple<-function(gdata=data,p_adjust_mtd,ctr_lv){
 
   pval<-test_pANOVA(gdata)
   if (pval>=ctr_lv) {
@@ -137,7 +137,7 @@ test_pANOVA_multiple<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
   return(list(p_value = pval,cld=cld_res$Letters))
 }
 
-test_ANOVA<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
+test_ANOVA<-function(gdata=data,p_adjust_mtd,ctr_lv){
   prop_ger<-gdata$ger_seed/gdata$num_seed
   gdata_ano<-cbind(gdata,prop_ger)
   anova_res<-aov(prop_ger~treatment,data=gdata_ano)
@@ -152,7 +152,7 @@ test_ANOVA<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
   return(list(p_value = pval,cld=cld_res))
 }
 
-test_AS_ANOVA<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
+test_AS_ANOVA<-function(gdata=data,p_adjust_mtd,ctr_lv){
   as_prop_ger<-asin(sqrt((gdata$ger_seed+3/8)/(gdata$num_seed+3/4)))
   gdata_as_ano<-cbind(gdata,as_prop_ger)
   as_anova_res<-aov(as_prop_ger~treatment,data=gdata_as_ano)
@@ -167,7 +167,7 @@ test_AS_ANOVA<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
   return(list(p_value = pval,cld=cld_res))
 }
 
-test_logistic<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
+test_logistic<-function(gdata=data,p_adjust_mtd,ctr_lv){
   bmod <- glm(cbind(ger_seed,num_seed-ger_seed) ~ treatment, family=binomial,gdata)
   stat<-bmod$null.deviance-bmod$deviance
   pval<-1-pchisq(stat,length(bmod$coefficients)-1, ncp = 0, lower.tail = TRUE, log.p = FALSE)
@@ -181,7 +181,7 @@ test_logistic<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
   return(list(p_value = pval,cld=cld_res))
 }
 
-test_KW<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
+test_KW<-function(gdata=data,p_adjust_mtd,ctr_lv){
   prop_ger<-gdata$ger_seed/gdata$num_seed
   gdata_KW<-cbind(gdata,prop_ger)
   DT=kruskal.test(prop_ger ~ treatment, data = gdata_KW)
@@ -192,7 +192,6 @@ test_KW<-function(gdata=gdata,p_adjust_mtd,ctr_lv){
   }
 
   DT_multi = PMCMRplus::kwAllPairsDunnTest(prop_ger ~ treatment, data=gdata_KW,  p.adjust.method = p_adjust_mtd)
-  DTT =rcompanion::PMCMRTable(DT_multi)
 
   comps <-na.omit(tidyr::pivot_longer(tibble::as_tibble(DT_multi$p.value, rownames="row"),-row, names_to="col", values_to="p"))
   mycomps <- as.matrix(comps[,1:2])

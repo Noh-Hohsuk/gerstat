@@ -4,7 +4,7 @@
 \alias{ger_test}
 \title{Conduct a range of germination rate comparison tests.}
 \usage{
-ger_test(gdata = gdata, method, p_adjust_mtd = "holm", ctr_lv = 0.05)
+ger_test(gdata = data, method = "LRT", p_adjust_mtd = "holm", ctr_lv = 0.05)
 }
 \arguments{
 \item{gdata}{A data-frame containing the germination data
@@ -44,8 +44,8 @@ utilizing the specified multiple comparison method.
 \examples{
 \dontrun{
 # Data import from a csv file
-data<-read.csv('D:\\\\nandina_data.csv', header=TRUE)
-ger_test(gdata=data,method="ANOVA",method="single-step")
+gerdata<-read.csv('D:\\\\nandina_data.csv', header=TRUE)
+ger_test(gdata=gerdata,method="ANOVA",method="single-step")
 }
 
 # Data generation
